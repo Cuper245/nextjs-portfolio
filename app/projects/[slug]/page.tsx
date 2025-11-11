@@ -14,7 +14,16 @@ type Props = {
   };
 };
 
-const redis = Redis.fromEnv();
+// ---- SAFE REDIS SETUP (build won't fail if Upstash is missing) ----
+let redis: Redis | null = null;
+try {
+  if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+    redis = Redis.fromEnv();
+  }
+} catch {
+  redis = null;
+}
+// -------------------------------------------------------------------
 
 export async function generateStaticParams(): Promise<Props["params"][]> {
   return allProjects
@@ -32,8 +41,18 @@ export default async function PostPage({ params }: Props) {
     notFound();
   }
 
-  const views =
-    (await redis.get<number>(["pageviews", "projects", slug].join(":"))) ?? 0;
+  // ---- SAFE READ (fallback to 0) ----
+  let views = 0;
+  if (redis) {
+    try {
+      const key = ["pageviews", "projects", slug].join(":");
+      const val = await redis.get<number>(key);
+      views = typeof val === "number" ? val : 0;
+    } catch {
+      views = 0;
+    }
+  }
+  // -----------------------------------
 
   return (
     <div className="bg-zinc-50 min-h-screen">

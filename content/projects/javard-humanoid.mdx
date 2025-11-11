@@ -1,0 +1,59 @@
+---
+# Frontmatter (top block) – fill these in
+# Only the first 7 fields are essential; the rest are optional.
+
+
+# Required
+title: JAVARD – Biped Humanoid Racer
+summary: Humanoid robot racing project (Raspberry Pi 5 + PCA9685 + MG996R). 3‑DOF legs, gait generation, IMU and IK experiments.
+date: 2025-10-24
+slug: javard-humanoid
+tech:
+- Raspberry Pi 5
+- MicroPython
+- PCA9685
+- MG996R servos
+- IMU (MPU6050)
+- Inverse kinematics
+cover: /projects/javard-humanoid/cover.jpg
+
+
+# Optional
+links:
+demo: https://youtu.be/XXXXXXXXXXX
+repo: https://github.com/<you>/javard
+docs: https://drive.google.com/...
+role: Robotics engineer • Controls • Firmware
+location: Monterrey, MX
+
+
+---
+
+
+Write your story here in **Markdown**. Keep it short and visual.
+
+
+- Goal: humanoid sprint for LARC “Humanoid Robot Racing”.
+- Hardware: Raspberry Pi 5 + PCA9685 (8 servos), 3.7V Li‑ion pack.
+- Highlights: gait loop, soft‑start, servo offsets, stance/step phases.
+- Results: 5 m in 12.4 s (best run), stable recovery after push.
+
+
+### Media
+
+
+![JAVARD standing](/projects/javard-humanoid/standing.jpg)
+
+
+<video src="/projects/javard-humanoid/walk.mp4" controls preload="metadata" />
+
+
+> If you prefer YouTube/Vimeo, paste the link directly or embed an iframe.
+
+
+### Tech notes
+
+
+- **IK**: 2‑link planar per leg, hip offset compensation.
+- **Control**: smooth step with easing; fixed‑time phase generator.
+- **Safety**: brown‑out guard, home pose on boot.

@@ -5,20 +5,23 @@ import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
 
 export const metadata: Metadata = {
+  // 👇 NEW: helps Next resolve absolute URLs during build (OG/Twitter images)
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://<your-vercel-project>.vercel.app"),
+
   title: {
-    default: "chronark.com",
-    template: "%s | chronark.com",
+    default: "Martha Pérez — Robotics Portfolio",
+    template: "%s | Martha Pérez",
   },
-  description: "Co-founder of unkey.dev and founder of planetfall.io",
+  description: "Robotics • Embedded Systems • Control — projects, write-ups, and videos.",
   openGraph: {
-    title: "chronark.com",
-    description:
-      "Co-founder of unkey.dev and founder of planetfall.io",
-    url: "https://chronark.com",
-    siteName: "chronark.com",
+    title: "Martha Pérez — Robotics Portfolio",
+    description: "Robotics • Embedded Systems • Control — projects, write-ups, and videos.",
+    url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://<your-vercel-project>.vercel.app",
+    siteName: "Martha Pérez — Portfolio",
     images: [
       {
-        url: "https://chronark.com/og.png",
+        // You can keep an external URL, but a local OG is faster & stable:
+        url: "/og.jpg",
         width: 1920,
         height: 1080,
       },
@@ -38,13 +41,14 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "Chronark",
+    title: "Martha Pérez — Robotics",
     card: "summary_large_image",
   },
   icons: {
     shortcut: "/favicon.png",
   },
 };
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -66,8 +70,7 @@ export default function RootLayout({
         <Analytics />
       </head>
       <body
-        className={`bg-black ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
-          }`}
+        className={`bg-black ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined}`}
       >
         {children}
       </body>

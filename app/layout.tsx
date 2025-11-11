@@ -12,19 +12,19 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),   // <-- no placeholders
-  title: { default: "Martha Pérez — Robotics Portfolio", template: "%s | Martha Pérez" },
+  title: { default: "Valentina Gonzalez — Robotics Portfolio", template: "%s | Valentina Gonzalez" },
   description: "Robotics • Embedded Systems • Control — projects, write-ups, and videos.",
   openGraph: {
-    title: "Martha Pérez — Robotics Portfolio",
+    title: "Valentina Gonzalez — Robotics Portfolio",
     description: "Robotics • Embedded Systems • Control — projects, write-ups, and videos.",
     url: siteUrl,
-    siteName: "Martha Pérez — Portfolio",
+    siteName: "Valentina Gonzalez — Portfolio",
     images: [{ url: "/og.jpg", width: 1920, height: 1080 }],
     locale: "en-US",
     type: "website",
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 } },
-  twitter: { title: "Martha Pérez — Robotics", card: "summary_large_image" },
+  twitter: { title: "Valentina Gonzalez — Robotics", card: "summary_large_image" },
   icons: { shortcut: "/favicon.png" },
 };
 
